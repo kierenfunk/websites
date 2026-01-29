@@ -1,3 +1,5 @@
+#!/bin/sh
+
 #########
 # SETUP #
 #########
@@ -76,10 +78,10 @@ while read -r article_date og_url; do
 </head>
 <body>
 <header data-ssg="header"></header>
-<main>
+<main class="bg-gray-100">
 <article id="article">
 <h1>$title</h1>
-<div>🗓️ $human_article_date</div>
+<p>🗓️ $human_article_date</p>
 <picture>
 <source media="(min-width:1100px)" srcset="$img_url_ne-1100w.avif">
 <source media="(min-width:1024px)" srcset="$img_url_ne-1024w.avif">
@@ -90,7 +92,7 @@ while read -r article_date og_url; do
 EOF
 
 	cat >> /tmp/posts.html << EOF  
-<a class="post" href="$href" itemscope itemtype="https://schema.org/Article"><div><picture><source srcset="$img_url_ne-300w.avif"><img loading="lazy" src="$img_url" alt="$title" itemprop="image"></picture></div><div><h4 itemprop="headline">$title</h4><p itemprop="description">$description</p><p itemprop="datePublished" content="$article_date">🗓️ $human_article_date</p></div></a>
+<a class="post" href="$href" itemscope itemtype="https://schema.org/Article"><picture><source srcset="$img_url_ne-768w.avif"><img loading="lazy" src="$img_url" alt="$title" itemprop="image"></picture><h4 itemprop="headline">$title</h4><p itemprop="description">$description</p><p itemprop="datePublished" content="$article_date">🗓️ $human_article_date</p></a>
 EOF
 done < /tmp/meta.txt
 
